@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head><h1>Search</h1></h:head>
+<h:body>
+<h:form>
+<h:inputHidden value ="#{user.userName}"/>
+<h:inputHidden value ="#{user.password}"/>
+<h:inputText id="search" value = "#{petition.petitionName}"/>
+<h:commandButton action="#{formController.Search(search)}" value = "Submit" />
+Petitions found:<br/>
+</h:form>
+	<div id="header" align="center">
+		<ui:insert name="header">
+			<ui:include src="/layouts/commonHeader.xhtml" />
+		</ui:insert>
+	</div>
+
+	<h:dataTable value="#{petitions.petitions}" var="p" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+    			<h:column>
+		<h:inputHidden value ="#{user.userName}"/>
+    				<f:facet name="header">Petition Number</f:facet> 
+    				#{p.petitionID}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Petition</f:facet> 
+    				#{p.petitionName}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Description</f:facet> 
+    				#{p.desciption}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Body</f:facet> 
+    				#{p.petitionBody}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Votes Needed</f:facet> 
+    				#{p.votesNeeded}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Up Votes</f:facet> 
+    				#{p.upVotes}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Down Votes</f:facet> 
+    				#{p.downVotes}
+    			</h:column>
+    			<h:column>
+    			<f:facet name="header">Buttons</f:facet>
+    			<h:form>
+    			<h:commandButton action="#{formController.onEdit(p)}" value="Edit #{p.petitionID}" />
+    			<h:commandButton action="#{formController.upVote(p)}" value="UpVote #{p.petitionID}" />
+    			<h:commandButton action="#{formController.downVote(p)}" value="DownVote #{p.petitionID}" />
+    			</h:form>
+    			</h:column>
+			</h:dataTable>
+<h:form>
+Return to Homepage<br/>
+<h:commandButton action="#{formController.onSubmit()}" value = "Go Back" />
+</h:form>
+</h:body>
+</html>

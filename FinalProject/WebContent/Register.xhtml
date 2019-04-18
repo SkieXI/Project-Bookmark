@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head> <h1>Registration Page</h1></h:head>
+	<h:body><h:form>
+	<fieldset>
+	
+First Name: <h:inputText id="firstName" value = "#{user.firstName}" title="" /><br/>
+<h:message for="firstName"/>
+
+Last Name:  <h:inputText id="lastName" value = "#{user.lastName}" title="" /><br/>
+<h:message for="lastName"/>
+	
+User Name: <h:inputText id="userName" value = "#{user.userName}" title="" /><br/>
+<h:message for="userName"/>
+
+Password: <h:inputText id="password" value = "#{user.password}" title="" /><br/>
+<h:message for="password"/>
+
+<h:commandButton value = "submit" action="#{formController.registerSubmit()}"/>
+</fieldset>
+<a href="Index.xhtml">back</a>
+</h:form>
+</h:body>
+</html>

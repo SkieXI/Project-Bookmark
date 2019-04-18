@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head><h1>Welcome to Change the World.com 2</h1></h:head>
+<h:body>
+
+		<div align="center"> 
+			Hello #{user.firstName} #{user.lastName}. Welcome to the admin page. <br/>
+			<br/>
+			<h:dataTable value="#{petitions.petitions}" var="p" styleClass="order-table" headerClass="order-table-header" rowClasses="order-table-odd-row,order-table-even-row">
+    			<h:column>
+    			<!-- this.petitionID = ID;
+		this.petitionUser = user;
+		this.petitionName = pN;
+		this.desciption = d;
+		this.petitionBody = pB;
+		this.votesNeeded = vN;
+		this.upVotes = uV;
+		this.downVotes = dV; -->
+		<h:inputHidden value ="#{user.userName}"/>
+    				<f:facet name="header">Petition Number</f:facet> 
+    				#{p.petitionID}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Petition</f:facet> 
+    				#{p.petitionName}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Description</f:facet> 
+    				#{p.desciption}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Body</f:facet> 
+    				#{p.petitionBody}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Votes Needed</f:facet> 
+    				#{p.votesNeeded}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Up Votes</f:facet> 
+    				#{p.upVotes}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">Down Votes</f:facet> 
+    				#{p.downVotes}
+    			</h:column>
+    			<h:column>
+    			<f:facet name="header">Buttons</f:facet>
+    			<h:form>
+    			<h:commandButton action="#{formController.onDelete(p)}" value="Delete #{p.petitionID}" />
+    			<h:commandButton action="#{formController.onShowEdit(p)}" value="Edit" /> <br/>
+    			<h:commandButton action="#{formController.upVoteAdmin(p)}" value="UpVote #{p.petitionID}" />
+    			<h:commandButton action="#{formController.downVoteAdmin(p)}" value="DownVote #{p.petitionID}" />
+    			</h:form>
+    			</h:column>
+			</h:dataTable>
+			<br/>
+			<h:form>
+			<h:button value="Create Petition" outcome="PetitionForm.xhtml" />
+				<h:button value="Logout" outcome="Index.xhtml" />
+			</h:form>
+		</div>
+
+	<div id="footer" align="center">
+		<ui:insert name="footer">
+			<ui:include src="/layouts/commonFooter.xhtml" />
+		</ui:insert>
+	</div>
+</h:body>
+</html>
